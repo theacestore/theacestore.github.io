@@ -61,6 +61,16 @@
     <div id="root"></div>
     <script>
       (() => {
+        const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+        if (normalizedPath === "/detail") {
+          const target = `/details${window.location.search}${window.location.hash}`;
+          window.location.replace(target);
+        }
+      })();
+    </script>
+    <script>
+      (() => {
         const TEXT = {
           workSamples: "\uC791\uC5C5 \uC0D8\uD50C",
           sample1: "\uC0D8\uD50C 1",
