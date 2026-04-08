@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta
       name="description"
-      content="PackagePro - 諛붿퐫???쇰꺼, ?⑦궎吏, ?⑦궎吏 ?쇰꺼, ?щ줎 ?ㅼ씠而??꾨Ц ?쒖“?낆껜. 理쒓퀬 ?덉쭏???⑦궎吏??붾（?섏쓣 ?쒓났?⑸땲??"
+      content="PackagePro - 獄쏅뗄?????곌볼, ???텕筌왖, ???텕筌왖 ??곌볼, ??以???쇱뵠???袁ⓓ???뽦??녾퍥. 筌ㅼ뮄????됱춳?????텕筌??遺억펷??륁뱽 ??볥궗??몃빍??"
     />
-    <title>PackagePro - ?꾨Ц ?⑦궎吏??붾（??</title>
+    <title>PackagePro - ?袁ⓓ????텕筌??遺억펷??</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -61,15 +61,24 @@
     <div id="root"></div>
     <script>
       (() => {
+        const TEXT = {
+          workSamples: "\uC791\uC5C5 \uC0D8\uD50C",
+          sample1: "\uC0D8\uD50C 1",
+          sample2: "\uC0D8\uD50C 2",
+          sample3: "\uC0D8\uD50C 3",
+          spec: "\uC0AC\uC591",
+          priceTable: "\uAC00\uACA9\uD45C",
+        };
+
         const samples = [
-          { src: "/assets/poron1.jpg", label: "샘플 1" },
-          { src: "/assets/poron2.jpg", label: "샘플 2" },
+          { src: "/assets/poron1.jpg", label: TEXT.sample1 },
+          { src: "/assets/poron2.jpg", label: TEXT.sample2 },
         ];
 
-        const createGallery = (compact = false) => {
+        const createGallery = () => {
           const gallery = document.createElement("div");
-          gallery.className = `poron-gallery${compact ? " poron-gallery--compact" : ""}`;
-          gallery.dataset.poronGallery = "true";
+          gallery.className = "poron-gallery poron-gallery--compact";
+          gallery.dataset.poronGallery = "work-samples";
 
           samples.forEach((sample) => {
             const item = document.createElement("figure");
@@ -79,7 +88,7 @@
             const image = document.createElement("img");
             image.className = "poron-gallery__image";
             image.src = sample.src;
-            image.alt = `포론 다이컷 ${sample.label}`;
+            image.alt = sample.label;
             image.loading = "lazy";
 
             const label = document.createElement("figcaption");
@@ -93,7 +102,7 @@
           return gallery;
         };
 
-        const findContainer = (node) => {
+        const findSectionContainer = (node, keywords) => {
           let current = node;
 
           while (current && current !== document.body) {
@@ -101,12 +110,7 @@
               current instanceof HTMLElement &&
               current.tagName === "DIV" &&
               current.textContent &&
-              current.textContent.includes("포론 다이컷") &&
-              (
-                current.textContent.includes("휴대폰 케이스용 충격방지") ||
-                current.textContent.includes("협의 후 조절") ||
-                current.children.length > 2
-              )
+              keywords.every((keyword) => current.textContent.includes(keyword))
             ) {
               return current;
             }
@@ -116,24 +120,37 @@
           return null;
         };
 
-        const decoratePoronSections = () => {
-          const nameNodes = Array.from(document.querySelectorAll("div, h1, h2, h3, h4, p, span")).filter(
-            (node) => node.textContent && node.textContent.trim() === "포론 다이컷"
-          );
+        const replaceWorkSamples = () => {
+          const heading = Array.from(
+            document.querySelectorAll("h1, h2, h3, h4, h5, div, span, strong, p")
+          ).find((node) => node.textContent && node.textContent.trim() === TEXT.workSamples);
 
-          nameNodes.forEach((node) => {
-            const container = findContainer(node);
-            if (!container || container.querySelector("[data-poron-gallery='true']")) {
-              return;
-            }
+          if (!heading) {
+            return;
+          }
 
-            const compact = container.textContent.includes("협의 후 조절");
-            container.appendChild(createGallery(compact));
-          });
+          const section = findSectionContainer(heading, [TEXT.workSamples, TEXT.sample1]);
+          if (!section) {
+            return;
+          }
+
+          const keepChild = Array.from(section.children).find((child) => child.contains(heading));
+          const existingGallery = section.querySelector("[data-poron-gallery='work-samples']");
+
+          if (existingGallery) {
+            existingGallery.remove();
+          }
+
+          const gallery = createGallery();
+          if (keepChild) {
+            section.replaceChildren(keepChild, gallery);
+          } else {
+            section.replaceChildren(gallery);
+          }
         };
 
         const removeDetailSections = () => {
-          ["사양", "가격표"].forEach((title) => {
+          [TEXT.spec, TEXT.priceTable].forEach((title) => {
             const heading = Array.from(document.querySelectorAll("h1, h2, h3, h4, div, span")).find(
               (node) => node.textContent && node.textContent.trim() === title
             );
@@ -150,12 +167,12 @@
         };
 
         const observer = new MutationObserver(() => {
-          decoratePoronSections();
+          replaceWorkSamples();
           removeDetailSections();
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
-        decoratePoronSections();
+        replaceWorkSamples();
         removeDetailSections();
       })();
     </script>
