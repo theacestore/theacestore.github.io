@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인쇄용 라벨 상세 정보 - Label Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #f27a30;
+            --primary-hover: #e06922;
+            --text-main: #222222;
+            --text-sub: #666666;
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-meta: #fff5f0;
+            --border-light: #eeeeee;
+            --card-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid var(--primary-orange);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background-color: var(--primary-orange);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--primary-orange);
+            font-weight: 700;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-back:hover {
+            color: var(--primary-orange);
+        }
+
+        .detail-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .detail-hero,
+        .content-section {
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .detail-hero {
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            min-height: 320px;
+            background: linear-gradient(135deg, rgba(242, 122, 48, 0.95), rgba(255, 195, 111, 0.92));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-visual {
+            max-width: 760px;
+        }
+
+        .hero-kicker {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-visual h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .hero-visual p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        .hero-text {
+            padding: 36px 40px 40px;
+            text-align: center;
+        }
+
+        .hero-text h3 {
+            font-size: 1.55rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-meta);
+            padding: 30px 20px;
+            border-radius: var(--card-radius);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-orange);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            font-weight: 700;
+        }
+
+        .content-section {
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            border: 1px solid var(--border-light);
+            border-radius: var(--card-radius);
+            padding: 20px;
+            background: #fffdfa;
+        }
+
+        .feature-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        .spec-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .spec-table th {
+            background-color: var(--bg-body);
+            font-weight: 700;
+            width: 25%;
+            color: var(--text-main);
+        }
+
+        .spec-table td {
+            color: var(--text-sub);
+        }
+
+        .cta-section {
+            background-color: var(--primary-orange);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-kakao {
+            background-color: #ffffff;
+            color: var(--primary-orange);
+        }
+
+        .btn-kakao:hover {
+            background-color: #fdfdfd;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #333333;
+            color: #aaaaaa;
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .hero-visual h2 {
+                font-size: 1.85rem;
+            }
+
+            .hero-image-wrapper {
+                min-height: 240px;
+            }
+
+            .hero-text,
+            .content-section {
+                padding: 24px 20px;
+            }
+        }
+
+        /* --- 인쇄용 라벨 포트폴리오 그리드 --- */
+        .label-portfolio {
+            margin-top: 60px;
+        }
+
+        .label-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 25px;
+        }
+
+        .label-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(242, 122, 48, 0.08);
+            border-color: rgba(242, 122, 48, 0.3);
+        }
+
+        .label-img-wrap {
+            height: 240px;
+            background: var(--bg-body);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .label-img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .label-info {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .label-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .badge-func {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-premium {
+            background: #fff8e1;
+            color: #f57f17;
+        }
+
+        .label-info h4 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .label-info p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .label-portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🏷️</div>
+                <div class="logo-text">
+                    <h1>Label Lab</h1>
+                    <p>소상공인 맞춤 제조</p>
+                </div>
+            </a>
+            <a href="index.html" class="btn-back">← 전체 제품 보기</a>
+        </div>
+    </header>
+    <main class="detail-container">
+        <section class="detail-hero fade-in">
+            <div class="hero-image-wrapper">
+                <div class="hero-visual">
+                    <div class="hero-kicker">인쇄용 라벨</div>
+                    <h2>브랜드 첫인상을 살리는 맞춤형 인쇄용 라벨</h2>
+                    <p>식품, 화장품, 생활용품, 공산품까지 다양한 제품군에 맞춰 재질과 마감을 세밀하게 제안합니다.</p>
+                </div>
+            </div>
+            <div class="hero-text">
+                <h3>소량 테스트부터 대량 납품까지 유연하게 대응합니다</h3>
+                <p>제품 성격과 부착 환경에 맞춰 아트지, 유포지, 투명 PET 등 다양한 옵션을 조합해 실무에 바로 쓰이는 라벨을 제작합니다.</p>
+            </div>
+        </section>
+        <section class="stats-grid fade-in">
+            <div class="stat-card">
+                <div class="stat-value">48h</div>
+                <div class="stat-label">시안 피드백 대응</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">주요 재질 선택지</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">Full</div>
+                <div class="stat-label">풀컬러 인쇄 지원</div>
+            </div>
+        </section>
+        <section class="content-section fade-in">
+            <h3>추천 포인트</h3>
+            <div class="feature-grid">
+                <div class="feature-card"><strong>브랜드 맞춤 디자인</strong>
+                    <p>컬러, 로고, 제품명, 주의 문구까지 원하는 구성을 정교하게 반영합니다.</p>
+                </div>
+                <div class="feature-card"><strong>부착 환경 고려</strong>
+                    <p>냉장, 실온, 습기 노출 여부에 따라 적합한 재질과 접착 조건을 제안합니다.</p>
+                </div>
+                <div class="feature-card"><strong>다양한 후가공</strong>
+                    <p>유광, 무광, 부분 코팅, 금박 등으로 상품의 완성도를 높일 수 있습니다.</p>
+                </div>
+            </div>
+            <h3>기본 사양 정보</h3>
+            <div class="label-portfolio fade-in">
+                <h3>맞춤 제작 포트폴리오</h3>
+                <div class="label-portfolio-grid">
+
+                    <div class="label-card">
+                        <div class="label-img-wrap">
+                            <img src="img/label_1.png" alt="교촌 치킨박스 무점착 밀봉 라벨">
+                        </div>
+                        <div class="label-info">
+                            <span class="label-badge badge-func">기능성 / 편의성</span>
+                            <h4>패키지 밀봉용 이지필(Easy-peel) 씰</h4>
+                            <p>배달 패키지 밀봉에 사용되는 스티커입니다. 끝부분을 무점착 처리하여 소비자가 손톱으로 긁지 않고도 부드럽게 개봉할 수 있도록 사용자 경험(UX)을 개선했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="label-card">
+                        <div class="label-img-wrap">
+                            <img src="img/label_2.png" alt="Denture 산업용 무점착 라벨">
+                        </div>
+                        <div class="label-info">
+                            <span class="label-badge badge-func">기능성 / 산업용</span>
+                            <h4>손잡이(Notch)형 무점착 라벨</h4>
+                            <p>의료용, 산업용 등 빠르고 정확한 개봉이 필요한 제품에 적용됩니다. 화살표(Notch) 영역에 점착제를 도포하지 않아 작업 속도와 편의성을 극대화합니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="label-card">
+                        <div class="label-img-wrap">
+                            <img src="img/label_3.png" alt="프리미엄 금속 로고 라벨">
+                        </div>
+                        <div class="label-info">
+                            <span class="label-badge badge-premium">프리미엄 / 금속</span>
+                            <h4>브랜드 품격을 높이는 메탈 로고 라벨</h4>
+                            <p>단순한 인쇄를 넘어 실제 금속 소재를 입체적으로 가공한 라벨입니다. 고가의 귀중품, 전자기기, 프리미엄 패키지에 부착하여 제품의 하이엔드 이미지를 완성합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="label-card">
+                        <div class="label-img-wrap">
+                            <img src="img/label_4.png" alt="농협 안심 한우 금박 라벨">
+                        </div>
+                        <div class="label-info">
+                            <span class="label-badge badge-premium">프리미엄 / 식품</span>
+                            <h4>신뢰감을 주는 식품용 금박 라벨</h4>
+                            <p>냉장/냉동 보관이 잦은 정육 및 식품 패키지에 사용됩니다. 화려한 금박 후가공을 더해 브랜드의 가치와 품질에 대한 신뢰감을 소비자에게 시각적으로 전달합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="spec-table-wrapper">
+                <table class="spec-table">
+                    <tbody>
+                        <tr>
+                            <th>재질</th>
+                            <td>아트지, 유포지, 감열지, 투명 PET, 크라프트지 등 선택 가능</td>
+                        </tr>
+                        <tr>
+                            <th>코팅 옵션</th>
+                            <td>유광, 무광, 부분 코팅, 무코팅</td>
+                        </tr>
+                        <tr>
+                            <th>최소 주문량</th>
+                            <td>협의 후 조절 가능</td>
+                        </tr>
+                        <tr>
+                            <th>인쇄 방식</th>
+                            <td>디지털 고해상도 인쇄, 풀컬러 지원</td>
+                        </tr>
+                        <tr>
+                            <th>추천 용도</th>
+                            <td>식음료, 생활용품, 화장품, 판촉용 스티커</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <section class="cta-section">
+        <h2>인쇄용 라벨 견적을 빠르게 받아보세요</h2>
+        <p>제품 종류와 수량, 희망 재질만 알려주시면 빠르게 상담해드립니다.</p>
+        <div class="cta-buttons">
+            <a href="https://open.kakao.com/o/sx6KEqpi" target="_blank" class="btn-cta btn-kakao">💬 카카오톡 문의</a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 Label Lab. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                    el.style.transition = 'all 0.6s ease-out';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+
+</html>

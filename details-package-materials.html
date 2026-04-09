@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>패키지 부자재 상세 정보 - Label Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #f27a30;
+            --primary-hover: #e06922;
+            --text-main: #222222;
+            --text-sub: #666666;
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-meta: #fff5f0;
+            --border-light: #eeeeee;
+            --card-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid var(--primary-orange);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background-color: var(--primary-orange);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--primary-orange);
+            font-weight: 700;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-back:hover {
+            color: var(--primary-orange);
+        }
+
+        .detail-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .detail-hero,
+        .content-section {
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .detail-hero {
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            min-height: 320px;
+            background: linear-gradient(135deg, rgba(242, 122, 48, 0.96), rgba(255, 158, 79, 0.94));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-kicker {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-visual {
+            max-width: 760px;
+        }
+
+        .hero-visual h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .hero-visual p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        .hero-text {
+            padding: 36px 40px 40px;
+            text-align: center;
+        }
+
+        .hero-text h3 {
+            font-size: 1.55rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-meta);
+            padding: 30px 20px;
+            border-radius: var(--card-radius);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-orange);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            font-weight: 700;
+        }
+
+        .content-section {
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            border: 1px solid var(--border-light);
+            border-radius: var(--card-radius);
+            padding: 20px;
+            background: #fffdfa;
+        }
+
+        .feature-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        .spec-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .spec-table th {
+            background-color: var(--bg-body);
+            font-weight: 700;
+            width: 25%;
+            color: var(--text-main);
+        }
+
+        .spec-table td {
+            color: var(--text-sub);
+        }
+
+        .cta-section {
+            background-color: var(--primary-orange);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-kakao {
+            background-color: #ffffff;
+            color: var(--primary-orange);
+        }
+
+        .btn-kakao:hover {
+            background-color: #fdfdfd;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #333333;
+            color: #aaaaaa;
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .hero-visual h2 {
+                font-size: 1.85rem;
+            }
+
+            .hero-image-wrapper {
+                min-height: 240px;
+            }
+
+            .hero-text,
+            .content-section {
+                padding: 24px 20px;
+            }
+        }
+
+        /* --- 포트폴리오 벤토 그리드 스타일 --- */
+        .portfolio-bento {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .bento-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            min-height: 280px;
+            cursor: pointer;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(242, 122, 48, 0.08);
+            border-color: rgba(242, 122, 48, 0.3);
+        }
+
+        .bento-item img {
+            max-width: 90%;
+            max-height: 220px;
+            object-fit: contain;
+            /* 웹상에서 자연스러운 그림자 효과 부여 */
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.08));
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+
+        .bento-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .bento-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 6px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .bento-item:hover .bento-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bento-info .tag {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--primary-orange);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .bento-info .title {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* 띠지를 위한 가로 전체 차지 클래스 */
+        .bento-wide {
+            grid-column: span 2;
+            min-height: 200px;
+        }
+
+        .bento-wide img {
+            max-height: 140px;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🏷️</div>
+                <div class="logo-text">
+                    <h1>Label Lab</h1>
+                    <p>소상공인 맞춤 제조</p>
+                </div>
+            </a>
+            <a href="index.html" class="btn-back">← 전체 제품 보기</a>
+        </div>
+    </header>
+    <main class="detail-container">
+        <section class="detail-hero fade-in">
+            <div class="hero-image-wrapper">
+                <div class="hero-visual">
+                    <div class="hero-kicker">패키지 부자재</div>
+                    <h2>브랜드 포장을 완성하는 실속형 부자재</h2>
+                    <p>박스, 띠지, 라벨스티커,금속라벨, 포장 보조물, 인쇄물 및 부자재등 다양한 상품을 상담해드립니다.</p>
+                </div>
+            </div>
+            <div class="hero-text">
+                <h3>가격 경쟁력과 납기 안정성을 같이 챙깁니다</h3>
+                <p>소상공인과 브랜드 초기 운영팀이 부담 없이 사용할 수 있도록 필요한 부자재만 골라 효율적으로 제안합니다.</p>
+            </div>
+        </section>
+        <section class="stats-grid fade-in">
+            <div class="stat-card">
+                <div class="stat-value">One-stop</div>
+                <div class="stat-label">포장 부자재 통합 상담</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">Custom</div>
+                <div class="stat-label">브랜드 맞춤 제작</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">Flexible</div>
+                <div class="stat-label">수량별 견적 대응</div>
+            </div>
+        </section>
+        <section class="content-section fade-in">
+            <h3>추천 포인트</h3>
+            <div class="feature-grid">
+                <div class="feature-card"><strong>포장 구성 최적화</strong>
+                    <p>상품 크기와 발송 방식에 맞춰 꼭 필요한 부자재만 구성할 수 있습니다.</p>
+                </div>
+                <div class="feature-card"><strong>브랜드 일관성 유지</strong>
+                    <p>라벨, 스티커, 패키지 톤을 맞춰 고객에게 더 정돈된 인상을 줍니다.</p>
+                </div>
+                <div class="feature-card"><strong>운영비 절감</strong>
+                    <p>자주 사용하는 부자재를 안정적으로 공급해 단가와 재고 운영 부담을 낮춥니다.</p>
+                </div>
+            </div>
+            <h3>기본 사양 정보</h3>
+            <h3 style="margin-top: 60px;">맞춤 제작 포트폴리오</h3>
+            <div class="portfolio-bento fade-in">
+                <div class="bento-item">
+                    <img src="img/egg_box.png" alt="동물복지 유정란 계란 포장 박스">
+                    <div class="bento-info">
+                        <span class="tag">식품 / 친환경</span>
+                        <span class="title">계란 전용 패키지</span>
+                    </div>
+                </div>
+
+                <div class="bento-item">
+                    <img src="img/mackerel_box.png" alt="고등어구이 종이 슬리브 박스">
+                    <div class="bento-info">
+                        <span class="tag">식품 / 냉장냉동</span>
+                        <span class="title">간편식 종이 슬리브</span>
+                    </div>
+                </div>
+
+                <div class="bento-item">
+                    <img src="img/vita_box.png" alt="비타할로 풋시트 뷰티 박스">
+                    <div class="bento-info">
+                        <span class="tag">뷰티 / 헬스케어</span>
+                        <span class="title">소형 단상자</span>
+                    </div>
+                </div>
+
+                <div class="bento-item">
+                    <img src="img/rollo_box.png" alt="Rollo 프리미엄 가로형 박스">
+                    <div class="bento-info">
+                        <span class="tag">기타 / 잡화</span>
+                        <span class="title">프리미엄 가로형 단상자</span>
+                    </div>
+                </div>
+
+                <div class="bento-item bento-wide">
+                    <img src="img/band_label.png" alt="런치랩 프레시밀 포장용 띠지">
+                    <div class="bento-info">
+                        <span class="tag">포장 부자재</span>
+                        <span class="title">용기 결합용 인쇄 띠지</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-table-wrapper">
+                <table class="spec-table">
+                    <tbody>
+                        <tr>
+                            <th>제작 품목</th>
+                            <td>포장용 스티커, 택, 박스, 띠지, 금속라벨, 쇼핑백, 인쇄 부자재 등 협의 가능</td>
+                        </tr>
+                        <tr>
+                            <th>주문 방식</th>
+                            <td>필요 품목별 개별 견적 또는 세트 제안 가능</td>
+                        </tr>
+                        <tr>
+                            <th>최소 주문량</th>
+                            <td>협의 후 조절 가능</td>
+                        </tr>
+                        <tr>
+                            <th>납기</th>
+                            <td>품목 및 후가공 여부에 따라 협의 후 조절</td>
+                        </tr>
+                        <tr>
+                            <th>추천 업종</th>
+                            <td>온라인 셀러, 디저트 브랜드, 소형 제조업, 선물 패키지 운영</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <section class="cta-section">
+        <h2>포장 부자재 일단 한번 상담해보세요</h2>
+        <p>현재 판매 방식과 제품 크기를 혹은 사용중인 자재를 알려주시면 빠르게 제안해드립니다.</p>
+        <div class="cta-buttons">
+            <a href="https://open.kakao.com/o/sx6KEqpi" target="_blank" class="btn-cta btn-kakao">💬 카카오톡 문의</a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 Label Lab. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                    el.style.transition = 'all 0.6s ease-out';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+
+</html>
