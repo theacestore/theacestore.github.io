@@ -58,7 +58,7 @@ npm run dev
 Local URL:
 
 ```text
-http://127.0.0.1:4321/labellab_webpage/
+http://127.0.0.1:4321/
 ```
 
 ## Build
@@ -86,7 +86,6 @@ The Astro config is prepared for GitHub Pages:
 ```js
 export default defineConfig({
   site: "https://theacestore.github.io",
-  base: "/labellab_webpage",
   output: "static",
 });
 ```
