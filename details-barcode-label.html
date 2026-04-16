@@ -40,6 +40,12 @@
         .feature-card { border: 1px solid var(--border-light); border-radius: var(--card-radius); padding: 20px; background: #fffdfa; }
         .feature-card strong { display: block; margin-bottom: 8px; color: var(--text-main); }
         .feature-card p { color: var(--text-sub); font-size: 0.95rem; }
+        .product-showcase { display: grid; grid-template-columns: minmax(260px, 1fr) 1fr; gap: 32px; align-items: center; }
+        .product-showcase-image { background: var(--bg-body); border: 1px solid var(--border-light); border-radius: var(--card-radius); padding: 24px; display: flex; justify-content: center; align-items: center; min-height: 280px; }
+        .product-showcase-image img { max-width: 100%; max-height: 360px; object-fit: contain; filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.1)); }
+        .product-showcase-text h3 { border-bottom: 0; padding-bottom: 0; margin-bottom: 12px; }
+        .product-showcase-text p { color: var(--text-sub); margin-bottom: 16px; }
+        .product-showcase-text ul { color: var(--text-sub); padding-left: 20px; }
         .spec-table-wrapper { overflow-x: auto; }
         .spec-table { width: 100%; border-collapse: collapse; text-align: left; }
         .spec-table th, .spec-table td { padding: 15px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
@@ -54,7 +60,7 @@
         .btn-kakao:hover { background-color: #fdfdfd; transform: translateY(-2px); }
         footer { background-color: #333333; color: #aaaaaa; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
         .fade-in { opacity: 0; transform: translateY(18px); }
-        @media (max-width: 768px) { .header-container { flex-wrap: wrap; } .stats-grid { grid-template-columns: 1fr; gap: 15px; } .hero-visual h2 { font-size: 1.85rem; } .hero-image-wrapper { min-height: 240px; } .hero-text, .content-section { padding: 24px 20px; } }
+        @media (max-width: 768px) { .header-container { flex-wrap: wrap; } .stats-grid { grid-template-columns: 1fr; gap: 15px; } .hero-visual h2 { font-size: 1.85rem; } .hero-image-wrapper { min-height: 240px; } .hero-text, .content-section { padding: 24px 20px; } .product-showcase { grid-template-columns: 1fr; } .product-showcase-image { min-height: 220px; } }
     </style>
 </head>
 <body>
@@ -88,6 +94,22 @@
             <div class="stat-card"><div class="stat-value">High</div><div class="stat-label">스캔 선명도 중심</div></div>
             <div class="stat-card"><div class="stat-value">Fast</div><div class="stat-label">반복 발주 대응</div></div>
             <div class="stat-card"><div class="stat-value">1D/2D</div><div class="stat-label">다양한 코드 형식</div></div>
+        </section>
+        <section class="content-section fade-in">
+            <div class="product-showcase">
+                <div class="product-showcase-image">
+                    <img src="img/barcode_roll_label.jpeg" alt="바코드용 롤 라벨">
+                </div>
+                <div class="product-showcase-text">
+                    <h3>대량 출력과 반복 부착에 맞춘 롤 라벨</h3>
+                    <p>재고관리, 출고, 제품 식별용으로 자주 쓰이는 롤 타입 라벨입니다. 사용하는 프린터와 부착 환경에 맞춰 폭, 간격, 권취 방향을 협의할 수 있습니다.</p>
+                    <ul>
+                        <li>물류 및 재고관리용 바코드 라벨</li>
+                        <li>반복 발주에 적합한 규격 관리</li>
+                        <li>스캔 안정성을 고려한 재질 제안</li>
+                    </ul>
+                </div>
+            </div>
         </section>
         <section class="content-section fade-in">
             <h3>추천 포인트</h3>

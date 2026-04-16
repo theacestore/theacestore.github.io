@@ -40,6 +40,12 @@
         .feature-card { border: 1px solid var(--border-light); border-radius: var(--card-radius); padding: 20px; background: #fffdfa; }
         .feature-card strong { display: block; margin-bottom: 8px; color: var(--text-main); }
         .feature-card p { color: var(--text-sub); font-size: 0.95rem; }
+        .product-showcase { display: grid; grid-template-columns: minmax(260px, 1fr) 1fr; gap: 32px; align-items: center; }
+        .product-showcase-image { background: var(--bg-body); border: 1px solid var(--border-light); border-radius: var(--card-radius); padding: 24px; display: flex; justify-content: center; align-items: center; min-height: 280px; }
+        .product-showcase-image img { max-width: 100%; max-height: 360px; object-fit: contain; filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.1)); }
+        .product-showcase-text h3 { border-bottom: 0; padding-bottom: 0; margin-bottom: 12px; }
+        .product-showcase-text p { color: var(--text-sub); margin-bottom: 16px; }
+        .product-showcase-text ul { color: var(--text-sub); padding-left: 20px; }
         .spec-table-wrapper { overflow-x: auto; }
         .spec-table { width: 100%; border-collapse: collapse; text-align: left; }
         .spec-table th, .spec-table td { padding: 15px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
@@ -54,7 +60,7 @@
         .btn-kakao:hover { background-color: #fdfdfd; transform: translateY(-2px); }
         footer { background-color: #333333; color: #aaaaaa; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
         .fade-in { opacity: 0; transform: translateY(18px); }
-        @media (max-width: 768px) { .header-container { flex-wrap: wrap; } .stats-grid { grid-template-columns: 1fr; gap: 15px; } .hero-visual h2 { font-size: 1.85rem; } .hero-image-wrapper { min-height: 240px; } .hero-text, .content-section { padding: 24px 20px; } }
+        @media (max-width: 768px) { .header-container { flex-wrap: wrap; } .stats-grid { grid-template-columns: 1fr; gap: 15px; } .hero-visual h2 { font-size: 1.85rem; } .hero-image-wrapper { min-height: 240px; } .hero-text, .content-section { padding: 24px 20px; } .product-showcase { grid-template-columns: 1fr; } .product-showcase-image { min-height: 220px; } }
     </style>
 </head>
 <body>
@@ -88,6 +94,22 @@
             <div class="stat-card"><div class="stat-value">3-5일</div><div class="stat-label">빠른 납기 대응</div></div>
             <div class="stat-card"><div class="stat-value">Sharp</div><div class="stat-label">선명한 출력 품질</div></div>
             <div class="stat-card"><div class="stat-value">Roll</div><div class="stat-label">권취 규격 협의 가능</div></div>
+        </section>
+        <section class="content-section fade-in">
+            <div class="product-showcase">
+                <div class="product-showcase-image">
+                    <img src="img/thermal_roll_label.png" alt="감열 롤 라벨">
+                </div>
+                <div class="product-showcase-text">
+                    <h3>송장과 현장 출력에 쓰기 좋은 감열 라벨</h3>
+                    <p>리본 없이 빠르게 출력하는 업무에 적합한 롤 타입 감열 라벨입니다. 택배 송장, 주문 라벨, 재고 라벨처럼 반복 출력이 많은 현장에 맞춰 제작합니다.</p>
+                    <ul>
+                        <li>감열 프린터 규격에 맞춘 지관 및 권취 협의</li>
+                        <li>택배, 물류, 재고관리 업무에 적합</li>
+                        <li>사용량이 많은 품목의 단가 경쟁력 확보</li>
+                    </ul>
+                </div>
+            </div>
         </section>
         <section class="content-section fade-in">
             <h3>추천 포인트</h3>

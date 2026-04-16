@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="다이컷 - Label Lab">
+    <DetailPage
+        eyebrow="Die-cut"
+        title="제품 형상에 맞춘 포론·필름 다이컷"
+        lead="완충재, 보호필름, 기능성 부자재를 필요한 형상과 두께에 맞춰 가공합니다."
+        image={`${base}images/spigen_case_poro.jpeg`}
+        points={["도면 기반 형상 가공", "포론 및 보호필름 대응", "전자기기 부자재 적용"]}
+        specs={[
+            { label: "소재", value: "포론, PET, TPU, 기능성 필름 등" },
+            { label: "가공", value: "톰슨, 다이컷, 형상 재단" },
+            { label: "분야", value: "케이스, 전자기기, 보호 부자재" },
+        ]}
+    />
+</BaseLayout>

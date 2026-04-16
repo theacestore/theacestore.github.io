@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="패키지 부자재 - Label Lab">
+    <DetailPage
+        eyebrow="Package Materials"
+        title="브랜드 포장을 완성하는 실속형 부자재"
+        lead="카드, 단상자, 띠지, 스티커 등 필요한 부자재를 브랜드 톤에 맞춰 효율적으로 구성합니다."
+        image={`${base}images/dencity_customer_card.jpeg`}
+        points={["포장 구성 최적화", "브랜드 일관성 유지", "운영비 절감"]}
+        specs={[
+            { label: "품목", value: "카드, 박스, 띠지, 택, 포장용 스티커" },
+            { label: "주문", value: "품목별 개별 견적 또는 세트 제안" },
+            { label: "업종", value: "온라인 셀러, 디저트 브랜드, 소형 제조업" },
+        ]}
+    />
+</BaseLayout>

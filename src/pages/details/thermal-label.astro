@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="감열 라벨 - Label Lab">
+    <DetailPage
+        eyebrow="Thermal Label"
+        title="출력 효율이 중요한 현장을 위한 감열 라벨"
+        lead="택배, 물류, 주문 라벨 등 빠른 출력과 선명한 정보 전달이 필요한 업무에 적합합니다."
+        image={`${base}images/thermal_roll_label.png`}
+        points={["빠른 현장 출력", "감열 프린터 규격 대응", "대량 사용 품목 단가 경쟁력"]}
+        specs={[
+            { label: "재질", value: "직접감열지, 감열합성지 등" },
+            { label: "형태", value: "롤 타입, 지관, 권취 방향 협의 가능" },
+            { label: "분야", value: "택배 송장, 주문 라벨, 재고 분류" },
+        ]}
+    />
+</BaseLayout>

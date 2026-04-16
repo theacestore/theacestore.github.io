@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="인쇄용 라벨 - Label Lab">
+    <DetailPage
+        eyebrow="Printed Label"
+        title="브랜드 첫인상을 살리는 맞춤형 인쇄용 라벨"
+        lead="식품, 화장품, 생활용품, 공산품까지 제품군에 맞춰 재질과 마감을 세밀하게 제안합니다."
+        image={`${base}images/hologram_label.png`}
+        points={["브랜드 맞춤 디자인", "부착 환경에 맞는 재질 제안", "홀로그램, 금박 등 다양한 후가공"]}
+        specs={[
+            { label: "재질", value: "아트지, 유포지, 투명 PET, 크라프트지 등" },
+            { label: "인쇄", value: "디지털 고해상도 인쇄, 풀컬러 지원" },
+            { label: "용도", value: "식음료, 생활용품, 화장품, 판촉용 스티커" },
+        ]}
+    />
+</BaseLayout>

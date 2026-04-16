@@ -1,0 +1,658 @@
+:root {
+    --primary-orange: #f27a30;
+    --primary-hover: #dc6824;
+    --ink: #161616;
+    --ink-soft: #545454;
+    --muted: #7a7a7a;
+    --bg-body: #f8f9fa;
+    --bg-panel: #fcfcfc;
+    --bg-card: rgba(255, 255, 255, 0.82);
+    --border-soft: rgba(22, 22, 22, 0.08);
+    --shadow-soft: 0 26px 70px rgba(22, 22, 22, 0.09);
+    --shadow-hover: 0 34px 90px rgba(22, 22, 22, 0.13);
+    --radius: 8px;
+    --transition: 220ms ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 8%, rgba(242, 122, 48, 0.08), transparent 28%),
+        linear-gradient(180deg, #fcfcfc 0%, var(--bg-body) 45%, #f4f5f6 100%);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(252, 252, 252, 0.82);
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(18px);
+}
+
+.header-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 12px 30px rgba(22, 22, 22, 0.14);
+}
+
+.logo-text h1 {
+    font-size: 1.08rem;
+    color: var(--ink);
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.logo-text p {
+    font-size: 0.74rem;
+    color: var(--primary-orange);
+    font-weight: 800;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.92rem;
+    transition: color var(--transition);
+}
+
+nav a:hover,
+.nav-link-contact {
+    color: var(--primary-orange);
+}
+
+.hero {
+    min-height: calc(100vh - 74px);
+    padding: 78px 24px 64px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 54px;
+    align-items: center;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-kicker,
+.section-heading p,
+.card-eyebrow {
+    color: var(--primary-orange);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.hero h2 {
+    max-width: 760px;
+    margin-top: 16px;
+    font-size: 6.4rem;
+    line-height: 0.98;
+    letter-spacing: 0;
+    font-weight: 900;
+}
+
+.hero h2 span {
+    color: var(--primary-orange);
+}
+
+.hero-lead {
+    max-width: 540px;
+    margin-top: 28px;
+    color: var(--ink-soft);
+    font-size: 1.18rem;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-detail,
+.btn-cta {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    font-weight: 900;
+    text-decoration: none;
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.btn-primary {
+    padding: 14px 24px;
+    background: var(--primary-orange);
+    color: #ffffff;
+    box-shadow: 0 18px 42px rgba(242, 122, 48, 0.24);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    padding: 14px 22px;
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--ink);
+    border: 1px solid var(--border-soft);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 620px;
+    margin-top: 46px;
+}
+
+.hero-metrics div {
+    padding: 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 18px 50px rgba(22, 22, 22, 0.05);
+}
+
+.hero-metrics strong,
+.hero-metrics span {
+    display: block;
+}
+
+.hero-metrics strong {
+    font-size: 1.14rem;
+    font-weight: 900;
+}
+
+.hero-metrics span {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 620px;
+    margin-right: -9vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-main-image {
+    position: relative;
+    z-index: 2;
+    width: min(620px, 88%);
+    max-height: 560px;
+    object-fit: contain;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    transform: rotate(-3deg) translateX(18px);
+}
+
+.floating-image {
+    position: absolute;
+    z-index: 3;
+    width: 190px;
+    max-height: 180px;
+    object-fit: contain;
+    padding: 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: var(--shadow-soft);
+}
+
+.floating-image-top {
+    top: 60px;
+    left: 28px;
+    transform: rotate(5deg);
+}
+
+.floating-image-bottom {
+    right: 56px;
+    bottom: 48px;
+    transform: rotate(-5deg);
+}
+
+.products-section {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 72px 0 96px;
+}
+
+.section-heading {
+    max-width: 760px;
+    margin-bottom: 30px;
+}
+
+.section-heading h3 {
+    margin-top: 10px;
+    font-size: 3.4rem;
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.products-bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(248px, auto);
+    grid-template-areas:
+        "label label package barcode"
+        "label label thermal diecut";
+    gap: 18px;
+}
+
+.product-card {
+    position: relative;
+    min-height: 100%;
+    padding: 24px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    box-shadow: 0 18px 55px rgba(22, 22, 22, 0.055);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(242, 122, 48, 0.22);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-card-feature {
+    grid-area: label;
+    padding: 30px;
+}
+
+.product-card-package {
+    grid-area: package;
+}
+
+.product-card-barcode {
+    grid-area: barcode;
+}
+
+.product-card-thermal {
+    grid-area: thermal;
+}
+
+.product-card-diecut {
+    grid-area: diecut;
+}
+
+.card-image-wrap {
+    min-height: 120px;
+    margin: -2px -2px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card-feature .card-image-wrap {
+    min-height: 320px;
+}
+
+.card-image-wrap img {
+    width: 100%;
+    max-height: 270px;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 28px rgba(22, 22, 22, 0.12));
+    transition: transform var(--transition);
+}
+
+.product-card:hover .card-image-wrap img {
+    transform: scale(1.035);
+}
+
+.card-title {
+    margin-top: 6px;
+    font-size: 1.45rem;
+    line-height: 1.22;
+    font-weight: 900;
+}
+
+.product-card-feature .card-title {
+    font-size: 3rem;
+}
+
+.card-desc {
+    margin-top: 10px;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    word-break: keep-all;
+}
+
+.product-card-feature .card-desc {
+    max-width: 540px;
+    font-size: 1.08rem;
+}
+
+.card-meta {
+    display: grid;
+    gap: 4px;
+    margin: 20px 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--ink-soft);
+    font-size: 0.84rem;
+}
+
+.meta-price {
+    color: var(--primary-orange);
+    font-weight: 900;
+}
+
+.btn-detail {
+    width: 100%;
+    margin-top: auto;
+    padding: 12px 16px;
+    background: var(--ink);
+    color: #ffffff;
+    font-size: 0.94rem;
+}
+
+.btn-detail:hover {
+    background: var(--primary-orange);
+}
+
+.cta-section {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto 90px;
+    padding: 58px 32px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: var(--radius);
+    background:
+        linear-gradient(135deg, rgba(22, 22, 22, 0.96), rgba(22, 22, 22, 0.84)),
+        linear-gradient(135deg, var(--primary-orange), #ffb26a);
+    box-shadow: var(--shadow-soft);
+}
+
+.cta-section h2 {
+    font-size: 3.1rem;
+    font-weight: 900;
+    line-height: 1.08;
+}
+
+.cta-section p {
+    margin-top: 14px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.08rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+.btn-cta {
+    padding: 13px 20px;
+    font-size: 0.96rem;
+}
+
+.btn-kakao {
+    background: #ffffff;
+    color: var(--ink);
+}
+
+.btn-sample {
+    background: #03c75a;
+    color: #ffffff;
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.btn-cta:hover {
+    transform: translateY(-2px);
+}
+
+footer {
+    background: #161616;
+    color: rgba(255, 255, 255, 0.62);
+    padding: 50px 24px;
+}
+
+.footer-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 34px;
+}
+
+.footer-col h4 {
+    margin-bottom: 14px;
+    color: #ffffff;
+    font-size: 0.96rem;
+    font-weight: 900;
+}
+
+.footer-col p,
+.footer-col li {
+    font-size: 0.86rem;
+    line-height: 1.85;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 5px;
+    margin-right: 8px;
+    border-radius: 1px;
+    background: var(--primary-orange);
+    vertical-align: middle;
+}
+
+.footer-brand {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        padding-top: 58px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 5rem;
+    }
+
+    .section-heading h3 {
+        font-size: 3rem;
+    }
+
+    .hero-visual {
+        min-height: 460px;
+        margin-right: -4vw;
+    }
+
+    .products-bento {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "label label"
+            "package barcode"
+            "thermal diecut";
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+
+    .header-container {
+        padding-inline: 18px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 44px 18px 56px;
+    }
+
+    .hero h2 {
+        font-size: 3.35rem;
+    }
+
+    .hero-lead {
+        font-size: 1.02rem;
+    }
+
+    .hero-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        min-height: 300px;
+        margin-right: -40px;
+    }
+
+    .hero-main-image {
+        width: min(360px, 88%);
+        max-height: 300px;
+    }
+
+    .floating-image {
+        width: 128px;
+    }
+
+    .floating-image-top {
+        left: 4px;
+        top: 26px;
+    }
+
+    .floating-image-bottom {
+        right: 28px;
+        bottom: 4px;
+    }
+
+    .products-section,
+    .cta-section {
+        width: calc(100% - 28px);
+    }
+
+    .products-bento {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "label"
+            "package"
+            "barcode"
+            "thermal"
+            "diecut";
+    }
+
+    .product-card-feature .card-image-wrap {
+        min-height: 220px;
+    }
+
+    .section-heading h3,
+    .product-card-feature .card-title,
+    .cta-section h2 {
+        font-size: 2.25rem;
+    }
+
+    .cta-section {
+        padding: 44px 20px;
+        margin-bottom: 48px;
+    }
+}

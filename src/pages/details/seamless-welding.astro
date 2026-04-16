@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="심리스 웰딩 PU 로고 - Label Lab">
+    <DetailPage
+        eyebrow="Seamless Welding"
+        title="봉제선 없이 완성하는 프리미엄 PU 로고"
+        lead="스포츠웨어와 고급 의류에 적합한 심리스 웰딩 로고 솔루션입니다. 열과 압력을 정밀하게 제어해 원단 위에 매끄럽고 견고한 브랜드 마크를 구현합니다."
+        image={`${base}images/welding_adidas.jpg`}
+        points={[
+            "봉제선 없이 깔끔한 외관 구현",
+            "프리미엄 스포츠웨어와 아웃도어 의류에 적합",
+            "PU 로고, 전사, 열접착 공정 상담 가능",
+        ]}
+        specs={[
+            { label: "소재", value: "PU 로고, 열접착 필름, 기능성 원단용 부자재" },
+            { label: "공정", value: "심리스 웰딩, 열압착, 위치 정렬 가공" },
+            { label: "분야", value: "스포츠웨어, 아웃도어, 프리미엄 의류, 브랜드 로고 부자재" },
+        ]}
+        gallery={[
+            {
+                title: "Adidas 웰딩 로고",
+                image: `${base}images/welding_adidas.jpg`,
+                alt: "아디다스 심리스 웰딩 로고 사례",
+            },
+            {
+                title: "Rapido 웰딩 로고",
+                image: `${base}images/rapido_wellding.jpeg`,
+                alt: "라피도 심리스 웰딩 로고 사례",
+            },
+            {
+                title: "The North Face 웰딩 로고",
+                image: `${base}images/northface.jpeg`,
+                alt: "노스페이스 심리스 웰딩 로고 사례",
+            },
+        ]}
+    />
+</BaseLayout>

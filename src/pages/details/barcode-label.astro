@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DetailPage from "../../components/DetailPage.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="바코드용 Blank 라벨 - Label Lab">
+    <DetailPage
+        eyebrow="Barcode Roll"
+        title="정확한 스캔을 위한 바코드용 Blank 라벨"
+        lead="물류, 재고관리, 출고 현장에서 안정적으로 쓰이는 롤 타입 바코드 라벨을 제작합니다."
+        image={`${base}images/barcode_roll_label.jpeg`}
+        points={["정확한 판독", "반복 발주에 적합한 규격 관리", "프린터와 부착 환경 고려"]}
+        specs={[
+            { label: "재질", value: "아트지, 유포지, 감열지, 합성지 등" },
+            { label: "형태", value: "롤 타입, 권취 방향 협의 가능" },
+            { label: "분야", value: "재고 관리, 물류 출고, 제품 식별" },
+        ]}
+    />
+</BaseLayout>
