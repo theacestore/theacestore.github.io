@@ -4,31 +4,38 @@ const kakaoUrl = "https://open.kakao.com/o/sx6KEqpi";
 const base = import.meta.env.BASE_URL;
 ---
 
-<section class="hero-section">
+<section class="hero-section hero-industrial">
+    <div class="hero-bg" aria-hidden="true">
+        <span class="hero-grid-layer"></span>
+        <span class="hero-light-beam"></span>
+        <span class="hero-particle hero-particle-a"></span>
+        <span class="hero-particle hero-particle-b"></span>
+        <span class="hero-particle hero-particle-c"></span>
+    </div>
     <div class="container hero-grid">
         <div class="hero-copy">
-            <p class="eyebrow">Advanced Industrial Solutions</p>
-            <h1>전문가의 기술로 완성하는 하이엔드 브랜드 솔루션</h1>
-            <p class="hero-lead">
+            <p class="eyebrow hero-kicker">Advanced Industrial Solutions</p>
+            <h1 class="hero-title">전문가의 기술로 완성하는 하이엔드 브랜드 솔루션</h1>
+            <p class="hero-lead hero-fade-up">
                 독일 CAB사의 정밀 자동 부착 시스템부터 프리미엄 심리스 웰딩 로고까지, 브랜드 생산 현장에 필요한 고난도 라벨링과 부자재 솔루션을 설계합니다.
             </p>
-            <div class="hero-actions">
+            <div class="hero-actions hero-fade-up">
                 <a href={sampleFormUrl} target="_blank" rel="noopener" class="button button-primary">프로젝트 상담</a>
                 <a href={kakaoUrl} target="_blank" rel="noopener" class="button button-secondary">카카오톡 문의</a>
                 <a href={`${base}#products`} class="button button-secondary">솔루션 보기</a>
             </div>
-            <dl class="hero-proof">
+            <dl class="hero-proof hero-fade-up">
                 <div>
-                    <dt>CAB</dt>
-                    <dd>자동 부착 시스템</dd>
+                    <dt>CAB 자동 부착 시스템</dt>
+                    <dd>정밀 라벨 공급과 반복 생산 대응</dd>
                 </div>
                 <div>
-                    <dt>Welding</dt>
-                    <dd>심리스 PU 로고</dd>
+                    <dt>심리스 PU 로고</dt>
+                    <dd>봉제선 없는 프리미엄 로고 사양</dd>
                 </div>
                 <div>
-                    <dt>B2B</dt>
-                    <dd>생산형 프로젝트 대응</dd>
+                    <dt>B2B 생산형 프로젝트 대응</dt>
+                    <dd>샘플부터 납품까지 사양 관리</dd>
                 </div>
             </dl>
         </div>
@@ -43,8 +50,66 @@ const base = import.meta.env.BASE_URL;
 
 <style>
     .hero-section {
+        position: relative;
         padding: calc(var(--space-xl) + 24px) 0 var(--space-xl);
         overflow: hidden;
+        background:
+            radial-gradient(circle at 84% 22%, rgba(217, 83, 15, 0.16), transparent 28%),
+            linear-gradient(135deg, rgba(13, 27, 42, 0.98), rgba(20, 32, 45, 0.94) 48%, rgba(250, 250, 248, 0.96) 48%);
+        isolation: isolate;
+    }
+
+    .hero-bg,
+    .hero-grid-layer,
+    .hero-light-beam {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .hero-bg {
+        z-index: -1;
+    }
+
+    .hero-grid-layer {
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.72) 44%, transparent 76%);
+    }
+
+    .hero-light-beam {
+        transform: skewX(-18deg) translateX(16%);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13), transparent);
+        animation: beamSweep 9s ease-in-out infinite;
+    }
+
+    .hero-particle {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 999px;
+        background: rgba(217, 83, 15, 0.72);
+        box-shadow: 0 0 22px rgba(217, 83, 15, 0.62);
+        animation: particleDrift 7s ease-in-out infinite;
+    }
+
+    .hero-particle-a {
+        top: 28%;
+        left: 12%;
+    }
+
+    .hero-particle-b {
+        top: 66%;
+        left: 38%;
+        animation-delay: 1.6s;
+    }
+
+    .hero-particle-c {
+        top: 18%;
+        right: 22%;
+        animation-delay: 3.1s;
     }
 
     .hero-grid {
@@ -64,7 +129,7 @@ const base = import.meta.env.BASE_URL;
     .hero-copy h1 {
         max-width: 780px;
         margin: var(--space-md) 0 0;
-        color: var(--text-heading);
+        color: #fff;
         font-size: 5.4rem;
         font-weight: 900;
         line-height: 1.02;
@@ -72,10 +137,34 @@ const base = import.meta.env.BASE_URL;
         word-break: keep-all;
     }
 
+    .hero-kicker,
+    .hero-title,
+    .hero-fade-up {
+        opacity: 0;
+        transform: translateY(22px);
+        animation: heroFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-title {
+        animation-delay: 0.14s;
+    }
+
+    .hero-fade-up {
+        animation-delay: 0.32s;
+    }
+
+    .hero-actions.hero-fade-up {
+        animation-delay: 0.48s;
+    }
+
+    .hero-proof.hero-fade-up {
+        animation-delay: 0.64s;
+    }
+
     .hero-lead {
         max-width: 620px;
         margin: var(--space-lg) 0 0;
-        color: var(--text-body);
+        color: rgba(255, 255, 255, 0.74);
         font-size: 1.12rem;
         word-break: keep-all;
     }
@@ -99,23 +188,26 @@ const base = import.meta.env.BASE_URL;
 
     .hero-proof div {
         padding: var(--space-md);
-        border: 1px solid rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: var(--radius-md);
-        background: rgba(255, 255, 255, 0.72);
-        box-shadow: var(--shadow-soft);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(18px);
     }
 
     .hero-proof dt {
-        color: var(--text-heading);
-        font-size: 1.08rem;
+        color: #fff;
+        font-size: 0.98rem;
         font-weight: 900;
+        word-break: keep-all;
     }
 
     .hero-proof dd {
         margin: 4px 0 0;
-        color: var(--text-body);
+        color: rgba(255, 255, 255, 0.66);
         font-size: 0.86rem;
         font-weight: 700;
+        word-break: keep-all;
     }
 
     .hero-visual {
@@ -134,6 +226,7 @@ const base = import.meta.env.BASE_URL;
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-soft);
         transform: translateX(16px) rotate(-1.5deg);
+        animation: visualRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.26s both;
     }
 
     .floating-card {
@@ -145,6 +238,7 @@ const base = import.meta.env.BASE_URL;
         border-radius: var(--radius-lg);
         background: var(--color-surface);
         box-shadow: var(--shadow-soft);
+        animation: visualRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
     }
 
     .floating-card-top {
@@ -159,7 +253,55 @@ const base = import.meta.env.BASE_URL;
         transform: rotate(-4deg);
     }
 
+    @keyframes heroFadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes visualRise {
+        from {
+            opacity: 0;
+            filter: blur(8px);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+        }
+    }
+
+    @keyframes beamSweep {
+        0%,
+        100% {
+            opacity: 0.16;
+            transform: skewX(-18deg) translateX(-18%);
+        }
+        50% {
+            opacity: 0.34;
+            transform: skewX(-18deg) translateX(22%);
+        }
+    }
+
+    @keyframes particleDrift {
+        0%,
+        100% {
+            transform: translate3d(0, 0, 0);
+            opacity: 0.3;
+        }
+        50% {
+            transform: translate3d(18px, -18px, 0);
+            opacity: 0.9;
+        }
+    }
+
     @media (max-width: 1024px) {
+        .hero-section {
+            background:
+                radial-gradient(circle at 72% 22%, rgba(217, 83, 15, 0.16), transparent 32%),
+                linear-gradient(150deg, rgba(13, 27, 42, 0.98), rgba(20, 32, 45, 0.96) 58%, rgba(250, 250, 248, 0.98) 58%);
+        }
+
         .hero-grid {
             grid-template-columns: 1fr;
             min-height: auto;
@@ -173,10 +315,13 @@ const base = import.meta.env.BASE_URL;
     @media (max-width: 768px) {
         .hero-section {
             padding: var(--space-xl) 0;
+            background:
+                radial-gradient(circle at 78% 30%, rgba(217, 83, 15, 0.17), transparent 36%),
+                linear-gradient(165deg, rgba(13, 27, 42, 0.98), rgba(20, 32, 45, 0.96) 66%, rgba(250, 250, 248, 0.98) 66%);
         }
 
         .hero-copy h1 {
-            font-size: 3.1rem;
+            font-size: 3rem;
         }
 
         .hero-proof {
@@ -208,6 +353,20 @@ const base = import.meta.env.BASE_URL;
         .floating-card-bottom {
             right: 0;
             bottom: 8px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-light-beam,
+        .hero-particle,
+        .hero-kicker,
+        .hero-title,
+        .hero-fade-up,
+        .hero-main-image,
+        .floating-card {
+            animation: none;
+            opacity: 1;
+            transform: none;
         }
     }
 </style>

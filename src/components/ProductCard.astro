@@ -11,7 +11,7 @@ interface Props {
 const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
 ---
 
-<article class:list={["bento-card", featured && "bento-card-featured"]}>
+<article class:list={["bento-card", "reveal", featured && "bento-card-featured"]}>
     <div class="bento-image">
         <img src={image} alt={`${title} 제작 샘플`} loading="lazy" />
     </div>
@@ -25,11 +25,12 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
 
 <style>
     .bento-card {
+        position: relative;
         min-height: 100%;
         display: flex;
         flex-direction: column;
         padding: var(--space-lg);
-        border: 1px solid rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(13, 27, 42, 0.06);
         border-radius: var(--radius-lg);
         background: var(--color-surface);
         box-shadow: var(--shadow-soft);
@@ -37,22 +38,46 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
         transition: var(--transition-premium);
     }
 
+    .bento-card::before {
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: radial-gradient(circle at 24% 0%, rgba(217, 83, 15, 0.18), transparent 34%);
+        content: "";
+        opacity: 0;
+        transition: var(--transition-premium);
+        pointer-events: none;
+    }
+
     .bento-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-hover);
+        border-color: rgba(217, 83, 15, 0.22);
+        transform: translateY(-8px);
+        box-shadow: 0 28px 70px rgba(217, 83, 15, 0.15), 0 18px 46px rgba(13, 27, 42, 0.08);
+    }
+
+    .bento-card:hover::before {
+        opacity: 1;
     }
 
     .bento-card-featured {
         grid-column: span 2;
         grid-row: span 2;
+        background:
+            linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 242, 0.9)),
+            var(--color-surface);
+        box-shadow: 0 24px 70px rgba(13, 27, 42, 0.08);
     }
 
     .bento-image {
+        position: relative;
         min-height: 150px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: var(--space-lg);
+        overflow: hidden;
+        border-radius: calc(var(--radius-lg) - 6px);
+        background: linear-gradient(145deg, rgba(13, 27, 42, 0.035), rgba(217, 83, 15, 0.035));
     }
 
     .bento-card-featured .bento-image {
@@ -68,7 +93,7 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
     }
 
     .bento-card:hover .bento-image img {
-        transform: scale(1.03);
+        transform: scale(1.06);
     }
 
     .bento-card-featured .bento-image img {
@@ -76,6 +101,8 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
     }
 
     .bento-content {
+        position: relative;
+        z-index: 1;
         margin-top: auto;
     }
 
@@ -99,6 +126,8 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
     }
 
     .bento-link {
+        position: relative;
+        z-index: 1;
         display: inline-flex;
         min-height: 48px;
         align-items: center;
@@ -115,7 +144,7 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
 
     .bento-link:hover {
         background: var(--color-primary);
-        transform: translateY(-4px);
+        transform: translateY(-3px);
         box-shadow: var(--shadow-hover);
     }
 
@@ -128,6 +157,10 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
         .bento-card,
         .bento-card-featured {
             padding: 24px;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
         }
 
         .bento-card-featured .bento-image {
