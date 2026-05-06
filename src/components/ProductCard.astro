@@ -29,20 +29,23 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
         min-height: 100%;
         display: flex;
         flex-direction: column;
-        padding: var(--space-lg);
-        border: 1px solid rgba(13, 27, 42, 0.06);
+        padding: 28px;
+        border: 1px solid rgba(13, 27, 42, 0.07);
         border-radius: var(--radius-lg);
-        background: var(--color-surface);
+        background: rgba(255, 255, 255, 0.88);
         box-shadow: var(--shadow-soft);
         overflow: hidden;
         transition: var(--transition-premium);
+        backdrop-filter: blur(14px);
     }
 
     .bento-card::before {
         position: absolute;
         inset: -1px;
         border-radius: inherit;
-        background: radial-gradient(circle at 24% 0%, rgba(217, 83, 15, 0.18), transparent 34%);
+        background:
+            radial-gradient(circle at 16% 0%, rgba(242, 201, 76, 0.22), transparent 28%),
+            radial-gradient(circle at 86% 12%, rgba(217, 83, 15, 0.17), transparent 32%);
         content: "";
         opacity: 0;
         transition: var(--transition-premium);
@@ -50,9 +53,9 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
     }
 
     .bento-card:hover {
-        border-color: rgba(217, 83, 15, 0.22);
+        border-color: rgba(217, 83, 15, 0.24);
         transform: translateY(-8px);
-        box-shadow: 0 28px 70px rgba(217, 83, 15, 0.15), 0 18px 46px rgba(13, 27, 42, 0.08);
+        box-shadow: 0 28px 70px rgba(217, 83, 15, 0.13), 0 18px 46px rgba(13, 27, 42, 0.08);
     }
 
     .bento-card:hover::before {
@@ -63,41 +66,42 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
         grid-column: span 2;
         grid-row: span 2;
         background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 242, 0.9)),
+            linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 236, 0.9)),
             var(--color-surface);
-        box-shadow: 0 24px 70px rgba(13, 27, 42, 0.08);
     }
 
     .bento-image {
         position: relative;
-        min-height: 150px;
+        min-height: 156px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: var(--space-lg);
+        margin-bottom: 26px;
         overflow: hidden;
-        border-radius: calc(var(--radius-lg) - 6px);
-        background: linear-gradient(145deg, rgba(13, 27, 42, 0.035), rgba(217, 83, 15, 0.035));
+        border-radius: 22px;
+        background:
+            linear-gradient(145deg, rgba(13, 27, 42, 0.035), rgba(217, 83, 15, 0.04)),
+            #f5f2eb;
     }
 
     .bento-card-featured .bento-image {
-        min-height: 330px;
+        min-height: 334px;
     }
 
     .bento-image img {
         width: 100%;
-        max-height: 280px;
-        object-fit: contain;
-        filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.08));
+        height: 100%;
+        max-height: 282px;
+        object-fit: cover;
         transition: var(--transition-premium);
     }
 
     .bento-card:hover .bento-image img {
-        transform: scale(1.06);
+        transform: scale(1.055);
     }
 
     .bento-card-featured .bento-image img {
-        max-height: 360px;
+        max-height: 370px;
     }
 
     .bento-content {
@@ -107,21 +111,22 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
     }
 
     .bento-content h3 {
-        margin: var(--space-sm) 0 0;
+        margin: 10px 0 0;
         color: var(--text-heading);
-        font-size: 1.55rem;
+        font-size: 1.5rem;
         font-weight: 900;
-        line-height: 1.2;
+        line-height: 1.24;
         word-break: keep-all;
     }
 
     .bento-card-featured .bento-content h3 {
-        font-size: 3rem;
+        font-size: clamp(2.1rem, 3.8vw, 3rem);
     }
 
     .bento-content p:not(.eyebrow) {
-        margin: var(--space-sm) 0 0;
+        margin: 10px 0 0;
         color: var(--text-body);
+        font-size: 0.96rem;
         word-break: keep-all;
     }
 
@@ -129,14 +134,16 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
         position: relative;
         z-index: 1;
         display: inline-flex;
-        min-height: 48px;
+        width: fit-content;
+        min-height: 46px;
         align-items: center;
         justify-content: center;
-        margin-top: var(--space-lg);
+        margin-top: 22px;
         padding: 12px 18px;
-        border-radius: var(--radius-md);
-        background: var(--text-heading);
+        border-radius: 999px;
+        background: var(--color-navy);
         color: #fff;
+        font-size: 0.9rem;
         font-weight: 900;
         text-decoration: none;
         transition: var(--transition-premium);
@@ -156,7 +163,7 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
 
         .bento-card,
         .bento-card-featured {
-            padding: 24px;
+            padding: 22px;
         }
 
         .bento-card:hover {
@@ -165,10 +172,6 @@ const { title, eyebrow, desc, image, href, featured = false } = Astro.props;
 
         .bento-card-featured .bento-image {
             min-height: 220px;
-        }
-
-        .bento-card-featured .bento-content h3 {
-            font-size: 2.25rem;
         }
     }
 </style>

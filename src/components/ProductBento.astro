@@ -5,45 +5,45 @@ const base = import.meta.env.BASE_URL;
 
 const products = [
     {
-        title: "CAB 자동 부착 시스템",
+        title: "자동 부착 라벨 시스템",
         eyebrow: "German CAB Automation",
-        desc: "정밀 라벨 공급과 자동 부착 공정을 기반으로 반복 생산 라인의 품질 편차를 줄입니다.",
+        desc: "독일 CAB 장비 기반의 정밀 부착 공정으로 반복 생산 라인의 편차를 줄이고 안정적인 라벨 품질을 만듭니다.",
         image: `${base}images/cab_hermes_q.jpg`,
         featured: true,
     },
     {
         title: "심리스 웰딩 PU 로고",
         eyebrow: "Seamless Welding",
-        desc: "봉제선 없이 매끄럽게 접착되는 프리미엄 PU 로고 솔루션으로 고급 의류와 스포츠웨어에 적합합니다.",
+        desc: "봉제선 없이 매끈하게 접착되는 프리미엄 PU 로고 사양으로 의류, 스포츠웨어, 굿즈에 적합합니다.",
         image: `${base}images/welding_adidas.jpg`,
         href: `${base}details/seamless-welding/`,
         featured: true,
     },
     {
-        title: "인쇄용 라벨",
+        title: "인쇄 라벨",
         eyebrow: "Printed Label",
-        desc: "홀로그램, 금박, 기능성 소재까지 브랜드 아이덴티티를 정교하게 구현합니다.",
+        desc: "브랜드 로고, 원산지, 케어 정보, 보안 홀로그램까지 목적에 맞춰 정교하게 구현합니다.",
         image: `${base}images/hologram_label.jpg`,
         href: `${base}details/print-label/`,
     },
     {
         title: "패키지 부자재",
         eyebrow: "Package Materials",
-        desc: "카드, 단상자, 포장 스티커를 브랜드 톤에 맞춰 설계합니다.",
+        desc: "카드, 행택, 패키지 스티커 등 브랜드 접점에 필요한 부자재를 일관된 톤으로 제작합니다.",
         image: `${base}images/dencity_customer_card.jpg`,
         href: `${base}details/package-materials/`,
     },
     {
-        title: "롤 라벨 솔루션",
+        title: "롤 라벨 공급",
         eyebrow: "Roll Label System",
-        desc: "바코드용 Blank 라벨과 감열 라벨을 프린터, 권취, 반복 발주 조건에 맞춰 공급합니다.",
+        desc: "바코드용 blank 라벨과 감열 라벨을 규격, 권취 방향, 반복 발주 조건에 맞춰 공급합니다.",
         image: `${base}images/barcode_roll_label.jpeg`,
         href: `${base}details/barcode-label/`,
     },
     {
         title: "정밀 다이컷",
         eyebrow: "Precision Die-cut",
-        desc: "포론, 보호필름, 기능성 부자재를 제품 형상에 맞춰 안정적으로 가공합니다.",
+        desc: "포론, 보호필름, 기능성 부자재를 제품 형상에 맞춰 안정적인 치수로 가공합니다.",
         image: `${base}images/spigen_case_poro.jpeg`,
         href: `${base}details/poron-diecut/`,
     },
@@ -54,7 +54,11 @@ const products = [
     <div class="container">
         <div class="section-heading reveal">
             <p class="eyebrow">Industrial Portfolio</p>
-            <h2>자동화 라벨링부터 심리스 웰딩까지, 생산 현장에 바로 연결되는 솔루션</h2>
+            <h2>라벨부터 기능성 부자재까지, 생산 현장에 바로 연결되는 제품군</h2>
+            <p>
+                Uizard식 카드형 구성의 명료함은 살리고, 실제 제조 포트폴리오가 먼저 보이도록
+                제품 이미지와 사양 중심으로 정리했습니다.
+            </p>
         </div>
 
         <div class="bento-grid">
@@ -68,45 +72,30 @@ const products = [
 <style>
     .product-section {
         padding: var(--space-xl) 0 calc(var(--space-xl) + var(--space-lg));
+        background:
+            radial-gradient(circle at 8% 0%, rgba(217, 83, 15, 0.1), transparent 26%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.74));
     }
 
     .section-heading {
         max-width: 900px;
-        margin-bottom: var(--space-lg);
-    }
-
-    .section-heading h2 {
-        margin: var(--space-sm) 0 0;
-        color: var(--text-heading);
-        font-size: 3.35rem;
-        font-weight: 900;
-        line-height: 1.08;
-        letter-spacing: 0;
-        word-break: keep-all;
+        margin-bottom: 30px;
     }
 
     .bento-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: minmax(300px, auto);
-        gap: var(--space-md);
+        gap: 18px;
     }
 
     @media (max-width: 1024px) {
         .bento-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-
-        .section-heading h2 {
-            font-size: 2.9rem;
-        }
     }
 
     @media (max-width: 768px) {
-        .section-heading h2 {
-            font-size: 2.2rem;
-        }
-
         .bento-grid {
             grid-template-columns: 1fr;
         }
